@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title data-i18n="sidebarTitle">AI Chat Saver Pro</title>
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+  <div class="sidebar-container">
+    <!-- Header avec indicateur de mémoire -->
+    <div class="sidebar-header">
+      <span class="header-title"><span aria-hidden="true">🐼</span> <span data-i18n="extensionName">AI Chat Saver Pro</span></span>
+      <div class="storage-indicator" id="storageIndicator" title="Click for details" data-i18n-title="storageIndicatorTitle">
+        <div class="storage-dot" id="storageDot"></div>
+        <span id="storagePercent">0%</span>
+      </div>
+		<button id="refreshBtn" style="
+	  background: rgba(255,255,255,0.2);
+	  border: none;
+	  color: white;
+	  padding: 4px 8px;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  font-size: 12px;
+	" title="Refresh" data-i18n-title="refreshTitle">🔄</button>
+
+      <div class="storage-bar-container">
+        <div class="storage-bar" id="storageBar" style="width: 0%; background-color: var(--storage-low);"></div>
+      </div>
+    </div>
+    
+    <!-- Avertissement stockage -->
+    <div class="storage-warning" id="storageWarning">
+      <span>⚠️</span>
+      <span id="warningText" data-i18n="storageLowWarning">Espace de stockage faible</span>
+    </div>
+    
+    <!-- Section sauvegarde -->
+    <div class="save-section">
+      <div class="section-title"><span aria-hidden="true">💾</span> <span data-i18n="saveSectionTitle">Save Current Chat</span></div>
+      <button class="btn-save" id="saveBtn">
+        <span>💾</span>
+        <span data-i18n="saveCurrentConversation">Save Current Conversation</span>
+      </button>
+    </div>
+    
+    <!-- Section dossiers -->
+    <div class="folder-section">
+      <div class="folder-header">
+        <div class="section-title"><span aria-hidden="true">📁</span> <span data-i18n="foldersSectionTitle">Folders</span></div>
+        <div class="folder-actions">
+		  <!-- PAR : -->
+		  <button id="manageFoldersBtn" class="btn" title="Manage folders" data-i18n-title="manageFoldersTitle">
+			<span aria-hidden="true">📁</span> <span data-i18n="manageFoldersLabel">Manage</span>
+		  </button>
+		  <button id="createFolderBtn" class="btn" title="Create new folder" data-i18n-title="createFolderTitle">
+			+ <span data-i18n="createFolderLabel">Add</span>
+		  </button>
+        </div>
+      </div>
+      
+      <div class="folder-selector">
+        <select id="folderSelect">
+          <option value="0" data-i18n="allConversations">All conversations</option>
+          <option value="-1" data-i18n="noFolder">No folder</option>
+        </select>
+        <button id="exportFolderBtn" class="btn-secondary" title="Export folder" data-i18n-title="exportFolderTitle">
+          📤
+        </button>
+      </div>
+      
+      <!-- Liste rapide des dossiers -->
+      <div class="folder-quick-list" id="folderQuickList">
+        <!-- Chargé dynamiquement -->
+      </div>
+    </div>
+    
+    <!-- Recherche -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search conversations..." data-i18n-placeholder="searchPlaceholder">
+    </div>
+    
+    <!-- Liste des conversations -->
+    <div class="conversations-section">
+      <ul class="conversations-list" id="conversationsList">
+        <!-- Chargé dynamiquement -->
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Vue détail (overlay) -->
+  <div id="detailView" class="hidden">
+    <div class="detail-header">
+      <h3 id="detailTitle"></h3>
+      <div class="detail-actions">
+        <button id="exportTxtBtn" data-i18n="exportTxt">Export TXT</button>
+        <button id="exportMdBtn" data-i18n="exportMd">Export MD</button>
+        <button id="closeDetailBtn" data-i18n="close">Close</button>
+      </div>
+    </div>
+    
+    <div id="detailContent" class="detail-content">
+      <!-- Contenu chargé dynamiquement -->
+    </div>
+    
+    <div class="tags-section">
+      <div class="section-title"><span aria-hidden="true">🏷️</span> <span data-i18n="tagsSectionTitle">Tags</span></div>
+      <input type="text" id="tagsInput" placeholder="Add tags (comma separated)" data-i18n-placeholder="tagsPlaceholder">
+      <div class="conversation-actions">
+        <button id="saveTagsBtn" class="view-btn" data-i18n="saveTags">Save Tags</button>
+        <button id="deleteConvoBtn" class="delete-btn" data-i18n="deleteConversation">Delete Conversation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistiques de stockage cachées -->
+  <div style="display: none;">
+    <span id="storageUsed">0 MB</span>
+    <span id="storageTotal">5 MB limit</span>
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>

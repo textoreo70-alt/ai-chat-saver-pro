@@ -1,0 +1,816 @@
+/* sidebar.css - MODERNE ET COMPACT */
+:root {
+  --primary: #10a37f;
+  --primary-dark: #0d8b6d;
+  --primary-light: rgba(16, 163, 127, 0.1);
+  --secondary: #000000;
+  --background: #ffffff;
+  --sidebar-bg: #f8fafc;
+  --text: #1a202c;
+  --text-light: #718096;
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+  --storage-low: #10a37f;
+  --storage-medium: #f59e0b;
+  --storage-high: #dc2626;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 380px;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  background: var(--sidebar-bg);
+  color: var(--text);
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* ===== HEADER ===== */
+.sidebar-header {
+  background: var(--secondary);
+  color: white;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: var(--shadow);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Indicateur de stockage compact */
+.storage-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  cursor: help;
+  transition: background 0.2s;
+  margin-left: auto;
+}
+
+.storage-indicator:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.storage-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.storage-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+}
+
+.storage-bar {
+  height: 100%;
+  border-radius: 0 0 var(--radius) var(--radius);
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+/* ===== SECTION SAUVEGARDE ===== */
+.save-section {
+  background: white;
+  padding: 12px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 1.5px;
+}
+
+/* Bouton principal compact */
+.btn-save {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.btn-save:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(16, 163, 127, 0.2);
+}
+
+/* Sélecteur de dossier compact */
+.folder-selector {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.folder-selector select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+  height: 34px;
+}
+
+.folder-selector select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.1);
+}
+
+#createFolderBtn {
+  background: var(--text-light);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+#createFolderBtn:hover {
+  background: #4a5568;
+}
+
+/* ===== RECHERCHE ===== */
+.search-container {
+  flex-shrink: 0;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 8px 10px 8px 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='m21 21-4.35-4.35'%3E%3C/path%3E%3C/svg%3E") no-repeat 10px center;
+  transition: all 0.2s;
+  height: 34px;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.1);
+}
+
+/* ===== LISTE DES CONVERSATIONS ===== */
+.conversations-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0; /* Important pour le flex scroll */
+}
+
+.conversations-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 4px;
+}
+
+/* Scrollbar minimaliste */
+.conversations-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.conversations-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.conversations-list::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 2px;
+}
+
+.conversations-list::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Items de conversation compacts */
+.conversation-item {
+  background: white;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+
+.conversation-item:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  border-left-color: var(--primary);
+}
+
+.conversation-title {
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--secondary);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.conversation-meta {
+  font-size: 10px;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conversation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.tag {
+  background: var(--primary-light);
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 9px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.conversation-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.conversation-item:hover .conversation-actions {
+  opacity: 1;
+}
+
+.conversation-actions button {
+  flex: 1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.conversation-actions .view-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.conversation-actions .view-btn:hover {
+  background: var(--primary-dark);
+}
+
+.conversation-actions .delete-btn {
+  background: var(--danger-light);
+  color: var(--danger);
+  border: 1px solid #fecaca;
+}
+
+.conversation-actions .delete-btn:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* ===== AVERTISSEMENT STOCKAGE ===== */
+.storage-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+
+.storage-warning.show {
+  display: flex;
+}
+
+.storage-warning.critical {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+/* ===== ÉTAT VIDE ===== */
+.empty-state {
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+.empty-state-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+/* ===== VUE DÉTAIL ===== */
+#detailView {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--sidebar-bg);
+  z-index: 1000;
+  padding: 12px;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-header {
+  background: white;
+  padding: 12px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+#detailTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--secondary);
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 10px;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.detail-actions button {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+#closeDetailBtn {
+  background: var(--text-light);
+  color: white;
+}
+
+#exportTxtBtn {
+  background: var(--primary);
+  color: white;
+}
+
+#exportMdBtn {
+  background: #4f46e5;
+  color: white;
+}
+
+/* Contenu détail - MAXIMUM D'ESPACE */
+.detail-content {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: 0;
+}
+
+/* Messages compacts */
+.message {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.message.user {
+  background: rgba(16, 163, 127, 0.06);
+  border-left: 3px solid var(--primary);
+}
+
+.message.assistant {
+  border-left: 3px solid var(--text-light);
+}
+
+.message-role {
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+.message-content {
+  line-height: 1.5;
+  font-size: 12px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Section tags */
+.tags-section {
+  background: white;
+  padding: 12px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+#tagsInput {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 10px 0;
+  font-size: 12px;
+  height: 34px;
+}
+
+.tags-section .conversation-actions {
+  opacity: 1; /* Toujours visible dans la vue détail */
+  margin-top: 10px;
+}
+
+/* ===== UTILITIES ===== */
+.hidden {
+  display: none !important;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Micro animations */
+.btn-save:active,
+.detail-actions button:active,
+.conversation-actions button:active {
+  transform: translateY(0);
+}
+
+/* Responsive tweaks */
+@media (max-height: 600px) {
+  body {
+    font-size: 12px;
+  }
+  
+  .sidebar-container {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .save-section,
+  .detail-header,
+  .tags-section {
+    padding: 10px;
+  }
+  
+  .btn-save,
+  .folder-selector select,
+  #createFolderBtn,
+  #searchInput,
+  #tagsInput {
+    height: 32px;
+  }
+}
+/* ===== SECTION DOSSIERS ===== */
+/* ===== GESTION DES DOSSIERS ===== */
+.folder-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* Utilise les classes de bouton existantes */
+#manageFoldersBtn, 
+#createFolderBtn {
+  background: rgba(16, 163, 127, 0.1);
+  color: var(--primary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+#manageFoldersBtn:hover, 
+#createFolderBtn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Sélecteur de dossier */
+.folder-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.folder-selector select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+#exportFolderBtn {
+  background: rgba(16, 163, 127, 0.1);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  padding: 0 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 36px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+#exportFolderBtn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Badges de dossier */
+.folder-quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.folder-badge {
+  background: rgba(16, 163, 127, 0.1);
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+}
+
+.folder-badge:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.folder-badge.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+}
+
+.folder-badge-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Sélecteur de dossier amélioré */
+.folder-selector {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.folder-selector select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+  height: 34px;
+}
+
+#exportFolderBtn {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  height: 34px;
+  transition: all 0.2s;
+}
+
+#exportFolderBtn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Liste rapide des dossiers */
+.folder-quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.folder-badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid transparent;
+}
+
+.folder-badge:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.folder-badge.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+}
+
+.folder-badge-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0 4px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Bouton delete sur les badges de dossier */
+.folder-badge {
+  position: relative;
+  padding-right: 20px;
+}
+
+.folder-badge-delete {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 10px;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.folder-badge:hover .folder-badge-delete {
+  opacity: 1;
+}
+
+.folder-badge-delete:hover {
+  color: var(--danger);
+  background: var(--danger-light);
+}

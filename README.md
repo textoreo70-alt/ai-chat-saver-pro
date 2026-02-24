@@ -33,7 +33,7 @@
 ## 📥 Installation
 
 ### From Chrome Web Store
-> Coming soon
+[Here](https://chromewebstore.google.com/detail/ai-chat-saver-pro/poelngfgjdkkpkbkphjpkbnejhodnhnm)
 
 ### Manual Installation (Developer Mode)
 

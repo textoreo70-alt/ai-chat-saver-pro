@@ -53,7 +53,7 @@
 | **Claude** | ✅ Supported | `claude.ai` |
 | **Grok** | ✅ Supported | `grok.com`, `grok.x.ai` |
 | **Gemini** | ✅ Supported | `gemini.google.com` |
-| **Perplexity** | ✅ Supported | `perplexity.ai` |
+| **Perplexity** | Not Supported Yet| `perplexity.ai` |
 
 ---
 
